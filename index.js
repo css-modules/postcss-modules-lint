@@ -172,16 +172,10 @@ module.exports = postcss.plugin('postcss-modules-lint', function (options) {
     css.eachAtRule(function(atrule) {
       if(/keyframes$/.test(atrule.name)) {
         var globalMatch = /^\s*:global\s*\((.+)\)\s*$/.exec(atrule.params);
-        var localMatch = /^\s*:local\s*\((.+)\)\s*$/.exec(atrule.params);
         if(globalMatch) {
           if(pureMode) {
             throw new Error("@keyframes :global(...) is not allowed in pure mode");
           }
-          atrule.params = globalMatch[1];
-        } else if(localMatch) {
-          atrule.params = localMatch[0];
-        } else if(!globalMode) {
-          atrule.params = ":local(" + atrule.params + ")";
         }
       }
     });
@@ -193,6 +187,10 @@ module.exports = postcss.plugin('postcss-modules-lint', function (options) {
         hasPureImplicitGlobals: false
       };
       localizeNode(selector, context);
+      if(pureMode && context.hasPureGlobals) {
+        throw new Error("Selector '" + Tokenizer.stringify(selector) + "' is not pure " +
+          "(pure selectors must contain at least one local class or id)");
+      }
       if(!globalMode && context.hasPureImplicitGlobals) {
         throw new Error("Selector '" + Tokenizer.stringify(selector) + "' must be explicitly flagged with :global " +
           "(elsewise it would leak globally)");
