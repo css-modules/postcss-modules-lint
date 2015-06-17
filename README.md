@@ -1,4 +1,4 @@
-[![Build Status][ci-img]][ci] [![codecov][codecov-img]][codecov] [![npm][npm-img]][npm]
+[![Build Status][ci-img]][ci] [![codecov][codecov-img]][codecov]
 
 # CSS Modules: Lint
 
@@ -37,8 +37,6 @@ Mark Dalgleish, 2015.
 
 [ci-img]:        https://img.shields.io/travis/css-modules/postcss-modules-lint/master.svg?style=flat-square
 [ci]:            https://travis-ci.org/css-modules/postcss-modules-lint
-[npm-img]:       https://img.shields.io/npm/v/postcss-modules-lint.svg?style=flat-square
-[npm]:           https://www.npmjs.com/package/postcss-modules-lint
 [coveralls-img]: https://img.shields.io/coveralls/css-modules/postcss-modules-lint/master.svg?style=flat-square
 [coveralls]:     https://coveralls.io/r/css-modules/postcss-modules-lint?branch=master
 [codecov-img]:   https://img.shields.io/codecov/c/github/css-modules/postcss-modules-lint/master.svg?style=flat-square
